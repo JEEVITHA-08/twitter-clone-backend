@@ -1,14 +1,14 @@
 package com.jeevitha.twitter_clone;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootApplication
-public class TwitterCloneApplication {
+@SpringBootTest
+class TwitterCloneApplicationTests {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TwitterCloneApplication.class, args);
+	@Test
+	void contextLoads() {
+
 	}
-
 }
 
