@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/users")
@@ -68,5 +69,11 @@ public class UserController {
             @RequestParam String email) {
 
         return userService.searchUsers(email);
+    }
+    @PostMapping("/upload-profile-image")
+    public String uploadProfileImage(
+            @RequestParam("file") MultipartFile file) {
+
+        return userService.uploadProfileImage(file);
     }
 }

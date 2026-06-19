@@ -16,6 +16,8 @@ public class Tweet {
     private Long id;
 
     private String content;
+    private String imageUrl;
+    
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -87,5 +89,15 @@ public class Tweet {
 
     public void setOriginalTweet(Tweet originalTweet) {
         this.originalTweet = originalTweet;
+    }
+    public int getLikesCount() {
+        return likedByUsers.size();
+    }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

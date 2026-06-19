@@ -20,6 +20,8 @@ public class User {
 
     @JsonIgnore
     private String password;
+    private String profileImage;
+
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
@@ -99,5 +101,13 @@ public class User {
 
     public void setFollowers(Set<User> followers) {
         this.followers = followers;
+    }
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+
     }
 }

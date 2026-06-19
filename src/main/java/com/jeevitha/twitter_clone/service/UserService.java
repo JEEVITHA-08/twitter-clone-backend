@@ -13,6 +13,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Service
 public class UserService {
@@ -33,6 +39,67 @@ public class UserService {
         );
 
         return userRepository.save(user);
+    }
+    public String uploadProfileImage(
+            MultipartFile file) {
+
+        try {
+
+            Authentication authentication =
+                    SecurityContextHolder.getContext()
+                            .getAuthentication();
+
+            String email = authentication.getName();
+
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() ->
+                            new RuntimeException("User not found"));
+
+            String originalName =
+                    file.getOriginalFilename();
+
+            String cleanFileName =
+                    originalName
+                            .replace("[", "")
+                            .replace("]", "")
+                            .replace(" ", "_");
+
+            String fileName =
+                    System.currentTimeMillis()
+                            + "_"
+                            + cleanFileName;
+            
+            Path directoryPath =
+                    Paths.get("uploads/profile");
+
+            if (!Files.exists(directoryPath)) {
+                Files.createDirectories(directoryPath);
+            }
+
+            Path uploadPath =
+                    directoryPath.resolve(fileName);
+
+            Files.write(
+                    uploadPath,
+                    file.getBytes()
+            );
+
+            user.setProfileImage(
+                    "/uploads/profile/" + fileName
+            );
+
+            userRepository.save(user);
+
+            return "Profile image uploaded successfully";
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            throw new RuntimeException(
+                    "Failed to upload image: " + e.getMessage()
+            );
+        }
     }
 
     public String loginUser(LoginRequest loginRequest) {

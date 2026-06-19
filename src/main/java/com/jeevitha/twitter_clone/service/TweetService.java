@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -132,20 +131,10 @@ public class TweetService {
         return tweet.getLikedByUsers().size();
     }
 
+    // FIXED FEED METHOD
     public List<Tweet> getFeed() {
 
-        String email = SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getName();
-
-        User currentUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        List<User> followingUsers =
-                new ArrayList<>(currentUser.getFollowing());
-
-        return tweetRepository.findByUserIn(followingUsers);
+        return tweetRepository.findAll();
     }
 
     public Tweet retweet(Long tweetId) {
@@ -169,4 +158,5 @@ public class TweetService {
 
         return tweetRepository.save(retweet);
     }
+
 }
