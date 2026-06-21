@@ -17,6 +17,8 @@ public class User {
 
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
+    private String username;
 
     @JsonIgnore
     private String password;
@@ -37,8 +39,7 @@ public class User {
             joinColumns = @JoinColumn(name = "follower_id"),
             inverseJoinColumns = @JoinColumn(name = "following_id")
     )
-    @Column(unique = true)
-    private String username;
+
     @JsonIgnore
     private Set<User> following = new HashSet<>();
 
@@ -120,4 +121,5 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }
