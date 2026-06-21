@@ -37,6 +37,8 @@ public class User {
             joinColumns = @JoinColumn(name = "follower_id"),
             inverseJoinColumns = @JoinColumn(name = "following_id")
     )
+    @Column(unique = true)
+    private String username;
     @JsonIgnore
     private Set<User> following = new HashSet<>();
 
@@ -99,6 +101,7 @@ public class User {
         return followers;
     }
 
+
     public void setFollowers(Set<User> followers) {
         this.followers = followers;
     }
@@ -109,5 +112,12 @@ public class User {
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
 
+    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
