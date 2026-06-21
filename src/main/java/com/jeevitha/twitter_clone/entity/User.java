@@ -2,7 +2,6 @@ package com.jeevitha.twitter_clone.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +21,6 @@ public class User {
     private String username;
 
     private String password;
-
 
     private String profileImage;
 
@@ -49,8 +47,6 @@ public class User {
 
     public User() {}
 
-
-
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -60,22 +56,25 @@ public class User {
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
-    @JsonIgnore
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
     public String getProfileImage() { return profileImage; }
     public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
 
+    @JsonIgnore
     public List<Tweet> getTweets() { return tweets; }
     public void setTweets(List<Tweet> tweets) { this.tweets = tweets; }
 
+    @JsonIgnore
     public Set<Tweet> getLikedTweets() { return likedTweets; }
     public void setLikedTweets(Set<Tweet> likedTweets) { this.likedTweets = likedTweets; }
 
+    @JsonIgnore
     public Set<User> getFollowing() { return following; }
     public void setFollowing(Set<User> following) { this.following = following; }
 
+    @JsonIgnore
     public Set<User> getFollowers() { return followers; }
     public void setFollowers(Set<User> followers) { this.followers = followers; }
 }
