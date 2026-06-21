@@ -17,13 +17,13 @@ public class User {
 
     @Column(unique = true)
     private String email;
+
     @Column(unique = true)
     private String username;
 
-    @JsonIgnore
     private String password;
-    private String profileImage;
 
+    private String profileImage;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
@@ -39,7 +39,6 @@ public class User {
             joinColumns = @JoinColumn(name = "follower_id"),
             inverseJoinColumns = @JoinColumn(name = "following_id")
     )
-
     @JsonIgnore
     private Set<User> following = new HashSet<>();
 
@@ -47,79 +46,33 @@ public class User {
     @JsonIgnore
     private Set<User> followers = new HashSet<>();
 
-    public User() {
-    }
+    public User() {}
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @JsonIgnore
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getProfileImage() { return profileImage; }
+    public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public List<Tweet> getTweets() { return tweets; }
+    public void setTweets(List<Tweet> tweets) { this.tweets = tweets; }
 
-    public List<Tweet> getTweets() {
-        return tweets;
-    }
+    public Set<Tweet> getLikedTweets() { return likedTweets; }
+    public void setLikedTweets(Set<Tweet> likedTweets) { this.likedTweets = likedTweets; }
 
-    public void setTweets(List<Tweet> tweets) {
-        this.tweets = tweets;
-    }
+    public Set<User> getFollowing() { return following; }
+    public void setFollowing(Set<User> following) { this.following = following; }
 
-    public Set<Tweet> getLikedTweets() {
-        return likedTweets;
-    }
-
-    public void setLikedTweets(Set<Tweet> likedTweets) {
-        this.likedTweets = likedTweets;
-    }
-
-    public Set<User> getFollowing() {
-        return following;
-    }
-
-    public void setFollowing(Set<User> following) {
-        this.following = following;
-    }
-
-    public Set<User> getFollowers() {
-        return followers;
-    }
-
-
-    public void setFollowers(Set<User> followers) {
-        this.followers = followers;
-    }
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-
-    }
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    public Set<User> getFollowers() { return followers; }
+    public void setFollowers(Set<User> followers) { this.followers = followers; }
 }
