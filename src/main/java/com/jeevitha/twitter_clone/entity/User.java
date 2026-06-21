@@ -23,6 +23,7 @@ public class User {
 
     private String password;
 
+
     private String profileImage;
 
     @OneToMany(mappedBy = "user")
@@ -47,6 +48,8 @@ public class User {
     private Set<User> followers = new HashSet<>();
 
     public User() {}
+
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
