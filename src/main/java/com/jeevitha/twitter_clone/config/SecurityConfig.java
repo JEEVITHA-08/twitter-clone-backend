@@ -43,7 +43,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
-                "https://vercel.com/jeevitha-m/twitter-clonefrontend/6ih9SzBDgTbSBSqxz3sKpgu2M9Zr"
+                "https://twitter-clone-frontend-lac.vercel.app"
         ));
         configuration.setAllowedMethods(
                 List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
